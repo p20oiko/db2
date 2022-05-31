@@ -1,0 +1,35 @@
+1:
+SELECT *
+FROM consumables
+WHERE stock<=stock_lim;
+
+2:
+SELECT id,manufacturer,model FROM equipment WHERE date>"2010-01-01";
+
+3:
+SELECT category.id,category.descr,COUNT(category.id) AS sum
+FROM category,equipment
+WHERE category.id=equipment.category
+GROUP BY category.id;
+
+4:
+SELECT category.id,category.descr, avg((2022*365)-to_days(equipment.date)) as average_days
+FROM category,equipment
+WHERE category.id=equipment.category
+GROUP BY category.id;
+
+5:
+SELECT employee.name,employee.surname,equipment.id,equipment.manufacturer,equipment.model
+FROM employee,equipment
+WHERE equipment.id=employee.equipment;
+
+6:
+SELECT office.id,office.descr,equipment.id,equipment.manufacturer,equipment.model 
+FROM office,equipment
+WHERE office.id=equipment.office
+ORDER BY office.id
+
+7:
+SELECT equipment.id,equipment.manufacturer,equipment.model,consumables.id,consumables.manufacturer,consumables.manufacturer_id,consumables.descr
+FROM equipment,consumables
+WHERE equipment.consumables=consumables.id;
